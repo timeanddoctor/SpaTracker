@@ -109,6 +109,7 @@ else:
 video = F.interpolate(video[0], scale_factor=downsample,
                        mode='bilinear', align_corners=True)[None]
 vidLen = video.shape[1]
+print('视频形状和下采样后',video.shape,downsample)
 idx = torch.range(0, vidLen-1, args.fps).long()
 video=video[:, idx]
 # save the first image
@@ -195,6 +196,7 @@ elif args.model == "spatracker":
                                   filename=args.vid_name+"_spatracker")
 
 # vis the first queried video
+print('后面的测试！')
 img0 = video_vis[0,0].permute(1,2,0).detach().cpu().numpy()
 cv2.imwrite(os.path.join(outdir, f'{args.vid_name}_ref_query.png'), img0[:,:,::-1])
 # save the tracks
