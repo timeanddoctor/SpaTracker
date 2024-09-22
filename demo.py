@@ -144,7 +144,7 @@ elif args.model == "spatracker":
     checkpoint=os.path.join(
         './checkpoints/spaT_final.pth',
         ),
-        interp_shape = (384, 512),
+        interp_shape = (384//2, 512//2),
         seq_length = S_lenth
     )
     if torch.cuda.is_available():
