@@ -99,13 +99,14 @@ if args.crop:
     segm_mask = transform(torch.from_numpy(segm_mask[None, None]))[0,0].numpy()
 _, _, _, H, W = video.shape
 # adjust the downsample factor
+'''
 if H > W:
     downsample = max(downsample, 640//H)
 elif H < W:
     downsample = max(downsample, 960//W)
 else:
     downsample = max(downsample, 640//H)
-
+'''
 video = F.interpolate(video[0], scale_factor=downsample,
                        mode='bilinear', align_corners=True)[None]
 vidLen = video.shape[1]
