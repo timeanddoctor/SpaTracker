@@ -36,6 +36,7 @@ class MonoDEst(nn.Module):
             model_zoe_nk.eval()
             model_zoe_nk = model_zoe_nk.cuda()
             self.model = model_zoe_nk
+            print('模型使用了NK模型！')
         elif args.mde_name == "zoedepth_k":
             conf = get_config("zoedepth", "infer", config_version="kitti")
             model_zoe_k = build_model(conf)
