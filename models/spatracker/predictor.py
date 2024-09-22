@@ -192,7 +192,7 @@ class SpaTrackerPredictor(torch.nn.Module):
                             end_idx = (i+1)*30
                         if end_idx == i*30:
                             break
-                        video_ = video[0][i*30:end_idx
+                        video_ = video[0][i*30:end_idx]
                         print(i,'___似乎这里会报错了！')
                         vidDepths.append(depth_predictor.infer(video_/255))
 
