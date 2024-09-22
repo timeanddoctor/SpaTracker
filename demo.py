@@ -168,6 +168,7 @@ elif args.model == "spatracker":
         MonoDEst_M = MonoDEst_O.model
         MonoDEst_M.eval()
         depths = None
+        print('加载了深度预测文件！')
 
     pred_tracks, pred_visibility, T_Firsts = (
                                      model(video, video_depth=depths,
@@ -175,6 +176,7 @@ elif args.model == "spatracker":
                                      depth_predictor=MonoDEst_M, grid_query_frame=args.query_frame,
                                      segm_mask=torch.from_numpy(segm_mask)[None, None], wind_length=S_lenth)
                                         )
+    print('还是可视化？')
     
     vis = Visualizer(save_dir=outdir, grayscale=True, 
                         fps=fps_vis, pad_value=0, linewidth=args.point_size,
