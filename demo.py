@@ -99,6 +99,7 @@ if args.crop:
     segm_mask = transform(torch.from_numpy(segm_mask[None, None]))[0,0].numpy()
 _, _, _, H, W = video.shape
 # adjust the downsample factor
+print('请查看是否要打开自动调整downsample! 默认不自动')
 '''
 if H > W:
     downsample = max(downsample, 640//H)
