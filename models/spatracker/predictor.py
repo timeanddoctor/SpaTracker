@@ -181,21 +181,23 @@ class SpaTrackerPredictor(torch.nn.Module):
             queries = torch.cat([queries, grid_pts], dim=1)
 
         ## ----------- estimate the video depth -----------##
+        print('这里调整patch，防止内存崩溃，pat=15，默认')
+        pat=15
         if video_depth is None:
             with torch.no_grad():
-                if video[0].shape[0]>30:
+                if video[0].shape[0]>pat:
                     vidDepths = [] 
-                    for i in range(video[0].shape[0]//30+1):
-                        if (i+1)*30 > video[0].shape[0]:
+                    for i in range(video[0].shape[0]//pat+1):
+                        if (i+1)*pat > video[0].shape[0]:
                             end_idx = video[0].shape[0]
                         else:
-                            end_idx = (i+1)*30
-                        if end_idx == i*30:
+                            end_idx = (i+1)*pat
+                        if end_idx == i*pat:
                             break
-                        video_ = video[0][i*30:end_idx]
+                        video_ = video[0][i*pat:end_idx]
                         print(i,'___似乎这里会报错了！')
                         aa=depth_predictor.infer(video_/255)
-                        print('开始推理！')
+                        print('开始推理！',i)
                         vidDepths.append(aa)
 
                     video_depth = torch.cat(vidDepths, dim=0)
