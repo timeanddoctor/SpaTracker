@@ -137,7 +137,7 @@ if args.model == "cotracker":
     video_vis=vis.visualize(video=video, tracks=pred_tracks,
                              visibility=pred_visibility, filename=args.vid_name+"_cotracker")
 elif args.model == "spatracker":
-    S_lenth = 12       # [8, 12, 16] choose one you want
+    S_lenth = 8       # [8, 12, 16] choose one you want
     model = SpaTrackerPredictor(
     checkpoint=os.path.join(
         './checkpoints/spaT_final.pth',
